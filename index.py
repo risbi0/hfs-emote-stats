@@ -2,7 +2,7 @@ from math import isnan
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title='test', layout='wide')
+st.set_page_config(page_title='HFS Emote Stats', layout='wide')
 st.markdown(
     '''
     <style>
