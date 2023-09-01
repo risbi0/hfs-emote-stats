@@ -1,5 +1,6 @@
 from math import isnan
 import streamlit as st
+import plotly.express as px
 import pandas as pd
 
 st.set_page_config(page_title='HFS Emote Stats', layout='wide')
@@ -19,8 +20,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-pd.options.plotting.backend = 'plotly'
-
 def get_rankings(df):
     latest_data = dict(zip(df.index, df.iloc[:, -1]))
     num_items = { k: v for k, v in latest_data.items() if not isnan(v) }
@@ -34,7 +33,8 @@ def legend_ranking(t):
 def create_line_graph(df, title_name):
     global rankings
     rankings = get_rankings(df)
-    fig = df.T.plot()
+    df_transposed = df.T
+    fig = px.line(df_transposed)
     fig.update_layout(
         title=title_name,
         legend_title_text=None,
